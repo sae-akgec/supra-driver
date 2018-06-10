@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.lynden.gmapsfx.ClusteredGoogleMapView?>
+<?import eu.hansolo.medusa.Gauge?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="in.saeakgec.supra.controller.RaceController">
+    <stylesheets>
+        <URL value="@../css/Race.css" />
+    </stylesheets>
+    <children>
+        <VBox prefHeight="480.0" prefWidth="800.0">
+            <children>
+                <SplitPane dividerPositions="0.31681877444589307" prefHeight="480.0" prefWidth="800.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <children>
+                                <VBox alignment="CENTER" layoutX="-1.0" prefHeight="480.0" prefWidth="250.0">
+                                    <children>
+                                        <Gauge prefHeight="200.0" prefWidth="200.0" skinType="DIGITAL" />
+                              <Label text="Speed" />
+                                        <Gauge prefHeight="200.0" prefWidth="200.0" skinType="CHARGE" />
+                              <Label text="Fule" />
+                                    </children>
+                                </VBox>
+                            </children></AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480" prefWidth="550.0">
+                            <children>
+                                <VBox prefHeight="480.0" prefWidth="541.0">
+                                    <children>
+                                        <ClusteredGoogleMapView prefHeight="480.0" prefWidth="529.0" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </VBox>
+   </children>
+</AnchorPane>
