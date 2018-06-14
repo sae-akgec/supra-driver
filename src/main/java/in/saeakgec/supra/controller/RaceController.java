@@ -182,17 +182,6 @@ public class RaceController implements Initializable,MapComponentInitializedList
         stompSession.send("/server/flags", generalFlags);
     }
 
-    private String baseDir() {
-        String baseDir = "";
-        try {
-            baseDir = new File(".").getCanonicalPath();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        baseDir = baseDir.replace('\\','/');
-        baseDir = "file://" + baseDir + "/src/" + "main/resources/in/saeakgec/supra/img/";
-        return baseDir;
-    }
 
     public void setRace(Race race) {
         this.race = race;
