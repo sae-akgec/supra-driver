@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -90,12 +91,23 @@ public class DashboardController implements Initializable {
             }
         });
 
-        pendingListView.setOnMouseClicked(arg0 -> {
+        pendingListView.setOnTouchPressed(arg0 -> {
 
             ObservableList<Race> clickedRaces = pendingListView.getSelectionModel().getSelectedItems();
             Race race = clickedRaces.get(0);
             try {
                 openRaceScreen(arg0, race);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        pendingListView.setOnMouseClicked(arg0 -> {
+
+            ObservableList<Race> clickedRaces = pendingListView.getSelectionModel().getSelectedItems();
+            Race race = clickedRaces.get(0);
+            try {
+                openRaceScreenMouse(arg0, race);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -119,7 +131,7 @@ public class DashboardController implements Initializable {
     }
 
 
-    private void openRaceScreen(MouseEvent event, Race race) throws IOException {
+    private void openRaceScreen(TouchEvent event, Race race) throws IOException {
         Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(new Pane()));
 
@@ -130,7 +142,27 @@ public class DashboardController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(location1.openStream());
 
         RaceController ctrl1 = (RaceController) fxmlLoader.getController();
-        ctrl1.setRace(race);
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("bootstrapfx.css");
+        stage.setTitle("Dashboard");
+
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();
+    }
+
+    private void openRaceScreenMouse(MouseEvent event, Race race) throws IOException {
+        Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(new Pane()));
+
+        URL location1 = RaceController.class.getResource("/in/saeakgec/supra/view/Race.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(location1);
+        fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+        Parent root = (Parent) fxmlLoader.load(location1.openStream());
+
+        RaceController ctrl1 = (RaceController) fxmlLoader.getController();
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add("bootstrapfx.css");

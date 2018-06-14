@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.lynden.gmapsfx.GoogleMapView?>
+<?import eu.hansolo.medusa.Gauge?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -20,10 +23,10 @@
                             <children>
                                 <VBox alignment="CENTER" layoutX="-1.0" prefHeight="480.0" prefWidth="250.0">
                                     <children>
-                                        <!--<Gauge  maxValue="180.0" prefHeight="200.0" prefWidth="200.0" skinType="DIGITAL" subTitle="MPH" title="Speed" value="60.0" />-->
+                                        <Gauge maxValue="180.0" prefHeight="200.0" prefWidth="200.0" skinType="DIGITAL" subTitle="MPH" title="Speed" />
                               <Label text="Speed" />
-                                        <!--<Gauge animated="true" minMeasuredValue="0.0" prefHeight="200.0" prefWidth="200.0" skinType="CHARGE" title="Fule" value="20.0" />
-                              <Label text="Fule" />-->
+                                       <Gauge animated="true" minMeasuredValue="0.0" prefHeight="200.0" prefWidth="200.0" skinType="CHARGE" threshold="10.0" title="Fule" />
+                              <Label text="Fule" />
                                     </children>
                                 </VBox>
                             </children></AnchorPane>
@@ -33,8 +36,15 @@
                                     <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                              <GoogleMapView prefHeight="480.0" prefWidth="529.0" fx:id="googleMapView"/>
-                                    <AnchorPane prefHeight="480.0" prefWidth="541.0" fx:id="mapPane"/>
+                                              <GoogleMapView fx:id="googleMapView" prefHeight="480.0" prefWidth="529.0" />
+                                    <AnchorPane fx:id="mapPane" prefHeight="480.0" prefWidth="541.0">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="flag">
+                                             <image>
+                                                <Image url="@../img/flags/flag-yellow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></AnchorPane>
                                  </children>
                               </AnchorPane>
                                     </children>

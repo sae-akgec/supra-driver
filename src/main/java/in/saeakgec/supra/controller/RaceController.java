@@ -12,6 +12,7 @@ import com.lynden.gmapsfx.service.directions.DirectionsServiceCallback;
 import com.lynden.gmapsfx.service.directions.TravelModes;
 import in.saeakgec.supra.App;
 import in.saeakgec.supra.model.*;
+import in.saeakgec.supra.service.DashboardService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.simp.stomp.*;
 import org.springframework.web.socket.WebSocketHttpHeaders;
@@ -57,6 +59,9 @@ public class RaceController implements Initializable,MapComponentInitializedList
     @FXML
     AnchorPane mapPane;
 
+    @FXML
+    ImageView flag;
+
     private GoogleMap map;
     private Race race;
 
@@ -79,6 +84,10 @@ public class RaceController implements Initializable,MapComponentInitializedList
 
         DOMAIN = "http://192.168.43.125:8080";
         generalFlags = new GeneralFlags();
+
+        DashboardService dashboardService = new DashboardService();
+        List<Race> r = dashboardService.getAdminRace();
+        this.race= r.get(0);
 
         List<RedFlag> redFlags = new ArrayList<>();
         List<GreenFlag> greenFlags = new ArrayList<>();
